@@ -4,8 +4,6 @@ docker image for commonlisp of mooxe
 
 ### TIPS
 
-未完工暂时不打算继续了，原因如下:
-
 1. 分支众多
 1. 分发困难
 
@@ -43,11 +41,14 @@ docker image for commonlisp of mooxe
 ### Articals
 
 * [用 sbcl, asdf 和 cl-launch 编写可分发的 lisp 程序](http://tianchunbinghe.blog.163.com/blog/static/7001200692314249376/)
+* [用 sbcl, asdf 和 cl-launch 编写可分发的 lisp 程序 (2)  ](http://tianchunbinghe.blog.163.com/blog/static/700120061138929916)
 
 ### Packages
 
-* asdf
-* cl-luanch
+* [asdf](https://common-lisp.net/project/asdf/)
+  * [Cliki](http://www.cliki.net/asdf)
+* [cl-luanch](http://gitlab.common-lisp.net//xcvb/cl-launch)
+  * [Cliki](http://cliki.net/cl-launch)
 * [quicklisp](https://www.quicklisp.org/beta/)
 * [qi](https://github.com/CodyReichert/qi/)
 * [clon](https://github.com/didierverna/clon)
@@ -60,9 +61,10 @@ docker image for commonlisp of mooxe
 
 ### Implementations
 
-* [Racket](http://racket-lang.org/)
-  * [GITHUB]()
 * [MIT/GNU scheme](http://www.gnu.org/software/mit-scheme/)
+* [Guile](http://www.gnu.org/software/guile/)
+* [Racket](http://racket-lang.org/)
+  * [GITHUB](#)
 
 ### Books
 
