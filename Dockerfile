@@ -11,8 +11,10 @@ RUN \
   apt-get upgrade -y && \
   apt-get autoremove -y
 
-RUN apt-get install -y make
-# clisp clisp-doc
+RUN \
+  apt-get install -y \
+  make gcc m4 \
+  clisp clisp-doc
 # gcl gcl-doc
 
 ENV DOWNLOAD_PATH /root/downloads
@@ -76,12 +78,44 @@ RUN make install
 WORKDIR /root
 ###########################################
 
-ENV NEWLISP_FILENAME newlisp_10.6.2-utf8_amd64.deb
+
+###########################################
+# Embeddable Common Lisp
+###########################################
+ENV ECL_VERSION 16.0.0
+ENV ECL_PATH ecl-$ECL_VERSION
+ENV ECL_FILE $ECL_PATH.tar.gz
+
+RUN \
+
+  curl \
+    -o $DOWNLOAD_PATH/$ECL_FILE \
+    "https://gitlab.com/embeddable-common-lisp/ecl/repository/archive.tar.gz?ref=master" \
+    # https://common-lisp.net/project/ecl/files/ecl-16.0.0.tgz
+  && \
+
+  tar xvf \
+    $DOWNLOAD_PATH/$ECL_FILE \
+    -C $DOWNLOAD_PATH \
+  && \
+
+  sh -c "mv $DOWNLOAD_PATH/ecl-master-* $DOWNLOAD_PATH/$ECL_PATH"
+
+WORKDIR $DOWNLOAD_PATH/$ECL_PATH
+RUN ./configure && make && make install
+WORKDIR /root
+###########################################
+
+
+###########################################
 # newLISP
+###########################################
+ENV NEWLISP_FILENAME newlisp_10.6.2-utf8_amd64.deb
 RUN \
   axel http://www.newlisp.org/downloads/$NEWLISP_FILENAME && \
   dpkg -i $NEWLISP_FILENAME && \
   rm -rf $NEWLISP_FILENAME
+###########################################
 
 
 RUN rm -rf $DOWNLOAD_PATH
